@@ -25,8 +25,8 @@
           with: 
             context: ./server
             file: Dockerfile
-            builder: ${{ step.buildx.outputs.name }}
+            builder: ${{ steps.buildx.outputs.name }}
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/learn_github
         - name: Verify
-          run: echo ${{ step.buildx.outputs.digest }}
+          run: echo ${{ steps.buildx.outputs.digest }}
