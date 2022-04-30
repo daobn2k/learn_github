@@ -28,7 +28,7 @@
             builder: ${{ steps.buildx.outputs.name }}
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/server-prod
-        - name: Build and PUSH DOCKER IMAGE CLIENT
+        - name: Build and PUSH DOCKER IMAGE CLIENT SERVER
               uses: docker/build-push-action@v2
               with: 
                 context: ./react-production
