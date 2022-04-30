@@ -1,8 +1,8 @@
-name: learn_github
+  name: learn_github
 
-on:
-  push:
-    branches: [ main ]
+  on:
+    push:
+      branches: [ main ]
   jobs:
     docker:
       runs-on: ubuntu-latest
