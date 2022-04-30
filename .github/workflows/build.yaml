@@ -23,8 +23,8 @@
         - name: Build and PUSH DOCKER IMAGE
           uses: docker/build-push-action@v2
           with: 
-            context: ./server/
-            file: ./Dockerfile
+            context: ./
+            file: ./server/Dockerfile
             builder: ${{ steps.buildx.outputs.name }}
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/learn_github
