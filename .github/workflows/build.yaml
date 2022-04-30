@@ -27,7 +27,7 @@
             file: ./Dockerfile
             builder: ${{ steps.buildx.outputs.name }}
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/learn_github
+            tags: vandao2km/learn_github
 
         - name: Verify
           run: echo ${{ steps.buildx.outputs.digest }}
