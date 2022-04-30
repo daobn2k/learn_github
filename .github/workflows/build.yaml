@@ -24,9 +24,10 @@
           uses: docker/build-push-action@v2
           with: 
             context: ./server
-            file: Dockerfile
+            file: ./Dockerfile
             builder: ${{ steps.buildx.outputs.name }}
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/learn_github
+
         - name: Verify
           run: echo ${{ steps.buildx.outputs.digest }}
