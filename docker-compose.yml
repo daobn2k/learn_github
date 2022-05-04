@@ -1,0 +1,23 @@
+# newest version docker 
+version: '3'
+
+services:
+  server:
+    build: ./server
+    container_name: server
+    volumes:
+      - ./server:/app
+    ports:
+      - 5000:8000
+    restart: always
+  react-production:
+    container_name: react-production
+    build:
+      context: ./react-production
+      dockerfile: Dockerfile
+    ports:
+      - 120:80
+    depends_on:
+      - server
+    restart: always
+  
