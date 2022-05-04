@@ -20,13 +20,3 @@ services:
     depends_on:
       - server
     restart: always
-  next-production:
-    container_name: next-production
-    build: 
-      context: ./next-production
-      dockerfile: Dockerfile
-    ports:
-      - 3000:3000
-    depends_on:
-      - server
-    restart: always
