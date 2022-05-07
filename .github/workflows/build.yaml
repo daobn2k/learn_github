@@ -38,4 +38,4 @@
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/react-production 
         - name: Verify
-          run: echo ${{ steps.buildx.outputs.digest }}
+          run: echo "Thành công rồi"`
