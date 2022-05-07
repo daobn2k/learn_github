@@ -32,7 +32,7 @@ services:
       context: ./nginx
     hostname: nginx
     ports:
-      - "100:80" 
+      - "80:80" 
     depends_on:
       - server
     networks:
