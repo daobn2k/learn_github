@@ -9,47 +9,47 @@
 # tạo ra chuỗi công việc  vd docker build ,push , deploy notification ....
   jobs:
   # tên work
-    docker:
-      # runners là môi trường sẽ chạy work
-      runs-on: ubuntu-latest
-      # các action đc chạy theo 1 chuỗi từ trên xuống dưới 
-      steps:
-        # name : tên step con trong chuỗi trong chuỗi sự kiện, uses: sử dụng các webhook event để thực hiện 1 hđ gì đó mà đc cho phép
+    # docker:
+    #   # runners là môi trường sẽ chạy work
+    #   runs-on: ubuntu-latest
+    #   # các action đc chạy theo 1 chuỗi từ trên xuống dưới 
+    #   steps:
+    #     # name : tên step con trong chuỗi trong chuỗi sự kiện, uses: sử dụng các webhook event để thực hiện 1 hđ gì đó mà đc cho phép
 
-        # check repo 
-        - name: Checkout
-          uses: actions/checkout@v2
-        # check login docker --> tạo 2 serect trong account setting profile --> tương ứng user name và Token password ở docker hub
-        - name: Docker Login
-          uses: docker/login-action@v1
-          with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-        # set up build docker --> return ra buildx id là kết quả sau khi build
-        - name: SETUP DOCKER BUILD
-          uses: docker/setup-buildx-action@v1
-          id: buildx
-        # sử dụng action push của docker để push lên docker hub sử dụng ouput của step buildx
-        - name: Build and PUSH DOCKER IMAGE SERVER
-          uses: docker/build-push-action@v2
-          with: 
-            context: ./server
-            file: ./server/Dockerfile
-            builder: ${{ steps.buildx.outputs.name }}
-            push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/server-prod
-        # tương tự bước trên nhưng mà là client step push
-        - name: Build and PUSH DOCKER IMAGE CLIENT SERVER
-          uses: docker/build-push-action@v2
-          with: 
-            context: ./react-production
-            file: ./react-production/Dockerfile
-            builder: ${{ steps.buildx.outputs.name }}
-            push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/react-production 
-        # step này đơn giản là show ra 1 string text sau 1 chuỗi sự kiện ở trên
-        - name: Verify
-          run: echo "Thành công rồi"
+    #     # check repo 
+    #     - name: Checkout
+    #       uses: actions/checkout@v2
+    #     # check login docker --> tạo 2 serect trong account setting profile --> tương ứng user name và Token password ở docker hub
+    #     - name: Docker Login
+    #       uses: docker/login-action@v1
+    #       with:
+    #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+    #         password: ${{ secrets.DOCKERHUB_TOKEN }}
+    #     # set up build docker --> return ra buildx id là kết quả sau khi build
+    #     - name: SETUP DOCKER BUILD
+    #       uses: docker/setup-buildx-action@v1
+    #       id: buildx
+    #     # sử dụng action push của docker để push lên docker hub sử dụng ouput của step buildx
+    #     - name: Build and PUSH DOCKER IMAGE SERVER
+    #       uses: docker/build-push-action@v2
+    #       with: 
+    #         context: ./server
+    #         file: ./server/Dockerfile
+    #         builder: ${{ steps.buildx.outputs.name }}
+    #         push: true
+    #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/server-prod
+    #     # tương tự bước trên nhưng mà là client step push
+    #     - name: Build and PUSH DOCKER IMAGE CLIENT SERVER
+    #       uses: docker/build-push-action@v2
+    #       with: 
+    #         context: ./react-production
+    #         file: ./react-production/Dockerfile
+    #         builder: ${{ steps.buildx.outputs.name }}
+    #         push: true
+    #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/react-production 
+    #     # step này đơn giản là show ra 1 string text sau 1 chuỗi sự kiện ở trên
+    #     - name: Verify
+    #       run: echo "Thành công rồi"
     deploy:
     # chỗ này có thể có hoặc ko needs là chờ 1 job nào đó xong r làm tiếp
       needs: docker
@@ -87,7 +87,7 @@
     notification:
       needs: deploy
       runs-on: ubuntu-latest
-      
+
       steps:
         - name:
           uses: appleboy/discord-action@master
