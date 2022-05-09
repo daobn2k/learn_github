@@ -67,7 +67,7 @@
               script: |
                 echo "connect to  root@${{ secrets.BUILD_HOSTING_NAME }} "
               
-                cd /learn_github
+                cd learn_github
 
                 git pull
                 
