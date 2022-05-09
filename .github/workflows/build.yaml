@@ -73,6 +73,6 @@
                 
                 echo " pull soucre code success"
 
-                docker-compose up -d --build
+                docker compose up -d --build
 
                 "echo docker compose success"
