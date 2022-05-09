@@ -65,7 +65,16 @@
               port: 22
               script_stop: true
               script: |
+                if [ -d /learn_github ];
+                then
+                echo " is this have folder"
+                else
+                git clone https://github.com/daobn2k/learn_github.git
+                
+                echo "clone success";
+                
                 echo "connect to  root@${{ secrets.BUILD_HOSTING_NAME }} "
+              
                 cd /learn_github
 
                 git pull
