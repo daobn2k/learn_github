@@ -64,7 +64,7 @@
         - name: Deploy
           uses: appleboy/ssh-action@master
           with:
-# cấu hình connect to server
+    # cấu hình connect to server
               host: ${{ secrets.BUILD_HOSTING_NAME }}
               username: root
               password: ${{ secrets.BUILD_SSH_PASSWORD}}
@@ -84,13 +84,14 @@
                 docker compose up -d --build
 
                 echo " docker compose success"
-      notification:
-        needs: deploy
-        runs-on: ubuntu-latest
-        steps:
-          - name:
-            uses: appleboy/discord-action@master
-            with:
-              webhook_id: ${{ secrets.WEBHOOK_ID }}
-              webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-              args: The ${{ github.event_name }} event triggered first step.
+    notification:
+      needs: deploy
+      runs-on: ubuntu-latest
+      
+      steps:
+        - name:
+          uses: appleboy/discord-action@master
+          with:
+            webhook_id: ${{ secrets.WEBHOOK_ID }}
+            webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
+            args: The ${{ github.event_name }} event triggered first step.
