@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Test auto build with github actions
+          Hello A Nam 
         </a>
       </header>
     </div>

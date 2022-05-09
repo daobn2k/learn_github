@@ -1,3 +1,5 @@
+#để thưucj hiện demo cần test build run 2 file docker tại client và server trước ,, test docker compose file 
+
 # tạo name cho thằng action githubs
   name: learn_github
 # tạo sự kiện khi push vào 1 branches a ,b c nào đó 
@@ -49,22 +51,28 @@
         - name: Verify
           run: echo "Thành công rồi"
     deploy:
+    # chỗ này có thể có hoặc ko needs là chờ 1 job nào đó xong r làm tiếp
       needs: docker
       runs-on: ubuntu-latest
+      # cấp quyền để chạy scripts
       permissions:
         packages: write
         contents: read
       
       steps:
+      # tạo 1 step deploy
         - name: Deploy
           uses: appleboy/ssh-action@master
           with:
+# cấu hình connect to server
               host: ${{ secrets.BUILD_HOSTING_NAME }}
               username: root
               password: ${{ secrets.BUILD_SSH_PASSWORD}}
               port: 22
               script_stop: true
+              # script connect -> trỏ đến folder learn_github -> pull new code --> run docker compose up -d --build để run code mới trên server
               script: |
+
                 echo "connect to  root@${{ secrets.BUILD_HOSTING_NAME }} "
               
                 cd learn_github
