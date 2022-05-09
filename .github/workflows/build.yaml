@@ -49,7 +49,7 @@
         - name: Verify
           run: echo "Thành công rồi"
     deploy:
-      needs: push
+      needs: docker
       runs-on: ubuntu-latest
       permissions:
         packages: write
