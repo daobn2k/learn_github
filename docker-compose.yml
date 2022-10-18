@@ -24,8 +24,8 @@ services:
     depends_on:
       - server
     restart: always
-    networks:
-      - example-net
+    # networks:
+    #   - example-net
   nginx:
     container_name: nginx
     build:
@@ -35,8 +35,8 @@ services:
       - "100:80" 
     depends_on:
       - server
-    networks:
-      - example-net  
+    # networks:
+    #   - example-net  
 # networks:
 #   example-net:
 #     external: true
