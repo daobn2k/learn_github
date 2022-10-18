@@ -10,8 +10,8 @@ services:
     ports:
       - 5000:8000
     restart: always
-    networks:
-      - example-net
+    # networks:
+    #   - example-net
   react-production:
     container_name: react-production
     build:
@@ -37,6 +37,6 @@ services:
       - server
     networks:
       - example-net  
-networks:
-  example-net:
-    external: true
+# networks:
+#   example-net:
+#     external: true
