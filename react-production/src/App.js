@@ -5,6 +5,7 @@ function App() {
     const [list, setList] = useState([]);
     const url = process.env.API_URL || 'http://127.0.0.1:5000';
     const fetchData = () => {
+      console.log(url);
         fetch(url)
             .then((res) => res.json())
             .then((res) => setList(res['example']));
