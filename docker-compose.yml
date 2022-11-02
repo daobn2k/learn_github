@@ -2,6 +2,14 @@
 version: '3'
 
 services:
+  mongo_db:
+    image: mongo:latest
+    container_name: db_container
+    volumes:
+      - ./data:/db
+    networks:
+      - example-net
+
   server:
     build: ./server
     container_name: server
@@ -10,33 +18,40 @@ services:
     ports:
       - 5000:8000
     restart: always
-    # networks:
-    #   - example-net
-  react-production:
-    container_name: react-production
-    build:
-      context: ./react-production
-      dockerfile: Dockerfile
-    ports:
-      - 120:80
-    volumes:
-      - .:/app
     depends_on:
-      - server
-    restart: always
-    # networks:
-    #   - example-net
-  nginx:
-    container_name: nginx
-    build:
-      context: ./nginx
-    hostname: nginx
-    ports:
-      - "100:80" 
-    depends_on:
-      - server
-    # networks:
-    #   - example-net  
-# networks:
-#   example-net:
-#     external: true
+      - mongo_db
+    networks:
+      - example-net
+    environment:
+      PORT: 8000
+      MONGO_URL: mongodb://mongo_db:27017
+      NODE_ENV: 'development' 
+  # react-production:
+  #   container_name: react-production
+  #   build:
+  #     context: ./react-production
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 120:80
+  #   volumes:
+  #     - .:/app
+  #   depends_on:
+  #     - server
+  #   restart: always
+  #   networks:
+  #     - example-net
+ 
+  # nginx:
+  #   container_name: nginx
+  #   build:
+  #     context: ./nginx
+  #   hostname: nginx
+  #   ports:
+  #     - "100:80" 
+  #   depends_on:
+  #     - server
+  #   networks:
+  #     - example-net  
+networks:
+  example-net:
+    external: true
