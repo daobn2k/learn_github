@@ -3,7 +3,9 @@ import './App.css';
 import { useEffect, useState } from 'react';
 function App() {
     const [list, setList] = useState([]);
-    const url = process.env.API_URL || 'http://127.0.0.1:5000';
+    const url = process.env.URL_API || 'http://127.0.0.1:5000';
+    console.log( process.env.URL_API,'env');
+    console.log(url,'url');
     const fetchData = () => {
       console.log(url);
         fetch(url)

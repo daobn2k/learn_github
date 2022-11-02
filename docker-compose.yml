@@ -41,7 +41,7 @@ services:
     networks:
       - example-net
     environment:
-      API_URL: http://18.191.211.107:5000/
+      URL_API: "http://18.191.211.107:5000/"
   nginx:
     container_name: nginx
     build:
