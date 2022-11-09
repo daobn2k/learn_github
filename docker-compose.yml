@@ -41,7 +41,7 @@ services:
     networks:
       - example-net
     environment:
-      URL_API: "http://18.191.211.107:5000/"
+      REACT_APP_URL_API: "http://18.191.211.107:5000/"
   nginx:
     container_name: nginx
     build:
