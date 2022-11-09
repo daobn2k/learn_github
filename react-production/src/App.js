@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 function App() {
     const [list, setList] = useState([]);
     const url = process.env.REACT_APP_URL_API || 'http://127.0.0.1:5000';
-    console.log( process.env,'env');
     const fetchData = () => {
       console.log(url);
         fetch(url)
