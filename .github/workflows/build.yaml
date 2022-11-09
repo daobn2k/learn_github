@@ -75,8 +75,6 @@
 
                 echo "connect to  ${{secrets.BUILD_USER_NAME}}@${{ secrets.BUILD_HOSTING_NAME }} successfully"
 
-                sudo su 
-                
                 rm -rf learn_github
                 echo "remove folder old success"
 
