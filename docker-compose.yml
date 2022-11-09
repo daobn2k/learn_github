@@ -40,8 +40,6 @@ services:
     restart: always
     networks:
       - example-net
-    environment:
-      REACT_APP_URL_API: "http://18.191.211.107:5000/"
   nginx:
     container_name: nginx
     build:
