@@ -73,14 +73,25 @@
               # script connect -> trỏ đến folder learn_github -> pull new code --> run docker compose up -d --build để run code mới trên server
               script: |
                 echo "connect to  ${{secrets.BUILD_USER_NAME}}@${{ secrets.BUILD_HOSTING_NAME }} successfully"
-                
-                touch file.txt
-                
-                rm -rf file.txt
-                
+
+                rm -rf learn_github
+
                 echo "remove folder old success"
 
-              
+                git clone https://github.com/daobn2k/learn_github.git
+                cd learn_github
+                
+                echo "clone code success"
+
+                git pull
+                echo " pull soucre code success"
+
+                docker-compose down  
+                echo "down image success"
+
+                docker-compose up -d --build
+
+                echo " docker compose success"
     notification:
       needs: deploy
       runs-on: ubuntu-latest
