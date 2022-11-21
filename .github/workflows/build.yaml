@@ -91,7 +91,7 @@
 
                 docker-compose up -d --build
 
-                echo " docker compose success"
+                echo " docker compose success luôn"
     notification:
       needs: deploy
       runs-on: ubuntu-latest
